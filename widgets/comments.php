@@ -92,9 +92,6 @@ class Comments extends Widget_Base {
          'suppress_filters' => false,
 
      );
-     if($settings['ts_offset_enable']=='yes'){
-      $args['offset'] = $settings['ts_offset_item_num'];
-    }
 
      $comments_query = new \WP_Comment_Query;
      $comments = $comments_query->query( $args );

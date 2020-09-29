@@ -523,9 +523,6 @@ public function get_script_depends() {
     $show_views       = $settings['show_views'];
     $show_comments    = $settings['show_comments'];
     $show_tags        = $settings['show_tags'];
-    $number_of_columns_phone = $settings['number_of_columns_phone'];
-    $number_of_columns_tablet = $settings['posts_per_page'];
-    $number_of_columns_desktop = $settings['number_of_columns_desktop'];
     $crop	= (isset($settings['post_title_crop'])) ? $settings['post_title_crop'] : 20;
     $post_content_crop	= (isset($settings['post_content_crop'])) ? $settings['post_content_crop'] : 50;
 
@@ -546,7 +543,6 @@ public function get_script_depends() {
       'post_type'   =>  'post',
       'post_status' => 'publish',
       'orderby' => $settings['order_by'],
-      'posts_per_page' => $settings['post_count'],
       'meta_key'    => 'number_of_views',
       'order' => $settings['order'],
     ];

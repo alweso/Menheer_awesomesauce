@@ -66,16 +66,16 @@ class Plugin {
    */
   private function include_widgets_files() {
     require_once( __DIR__ . '/widgets/post-tabs-grid.php' );
-    // require_once( __DIR__ . '/widgets/post-tabs-list.php' );
-    // require_once( __DIR__ . '/widgets/post-grid.php' );
-    // require_once( __DIR__ . '/widgets/video-playlist.php' );
-    // require_once( __DIR__ . '/widgets/category-list-images.php' );
-    // require_once( __DIR__ . '/widgets/featured-posts.php' );
-    // require_once( __DIR__ . '/widgets/featured-gallery.php' );
-    // require_once( __DIR__ . '/widgets/post-list.php' );
-    // require_once( __DIR__ . '/widgets/post-block.php' );
-    // require_once( __DIR__ . '/widgets/post-carousel.php' );
-    // require_once( __DIR__ . '/widgets/comments.php' );
+    require_once( __DIR__ . '/widgets/post-tabs-list.php' );
+    require_once( __DIR__ . '/widgets/post-grid.php' );
+    require_once( __DIR__ . '/widgets/video-playlist.php' );
+    require_once( __DIR__ . '/widgets/category-list-images.php' );
+    require_once( __DIR__ . '/widgets/featured-posts.php' );
+    require_once( __DIR__ . '/widgets/featured-gallery.php' );
+    require_once( __DIR__ . '/widgets/post-list.php' );
+    require_once( __DIR__ . '/widgets/post-block.php' );
+    require_once( __DIR__ . '/widgets/post-carousel.php' );
+    require_once( __DIR__ . '/widgets/comments.php' );
   }
 
   /**
@@ -92,16 +92,16 @@ class Plugin {
 
     // Register Widgets
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsGrid() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsList() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostGrid() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\VideoPlaylist() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\CategoryListImages() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\FeaturedPosts() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\FeaturedGallery() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostList() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostBlock() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostCarousel() );
-    // \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Comments() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsList() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostGrid() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\VideoPlaylist() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\CategoryListImages() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\FeaturedPosts() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\FeaturedGallery() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostList() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostBlock() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostCarousel() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Comments() );
 
   }
 

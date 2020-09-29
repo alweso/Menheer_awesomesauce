@@ -86,11 +86,23 @@ protected function _register_controls() {
   );
 
   $this->add_control(
+    'show_title',
+    [
+      'label' => esc_html__('Show block title', 'elementor_awesomesauce'),
+      'type' => Controls_Manager::SWITCHER,
+      'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
+      'label_off' => esc_html__('No', 'elementor_awesomesauce'),
+      'default' => 'yes',
+    ]
+  );
+
+  $this->add_control(
     'title',
     [
       'label' => __( 'Title', 'elementor-awesomesauce' ),
       'type' => Controls_Manager::TEXT,
       'default' => __( 'Latest posts', 'elementor-awesomesauce' ),
+      'condition' => [ 'show_title' => ['yes'] ]
     ]
   );
 
@@ -683,18 +695,15 @@ protected function render() {
   $settings = $this->get_settings_for_display();
   $tabs = $settings['tabs'];
   $post_count = count($tabs);
-  $show_title         = isset($settings['show_title']);
-  $show_cat           = isset($settings['show_cat']);
-  $show_date          = isset($settings['show_date']);
-  $show_author         =isset( $settings['show_author']);
-  $show_views         = isset($settings['show_views']);
-  $show_comments         = isset($settings['show_comments']);
-  $show_tags        = isset($settings['show_tags']);
-  $number_of_columns_phone = isset($settings['number_of_columns_phone']);
-  $number_of_columns_tablet = isset($settings['posts_per_page']);
-  $number_of_columns_desktop = isset($settings['number_of_columns_desktop']);
-  $crop	= (isset($settings['post_title_crop'])) ? $settings['post_title_crop'] : 20;
-  $post_content_crop	= (isset($settings['post_content_crop'])) ? isset($settings['post_content_crop']) : 50;
+  $show_title         = $settings['show_title'];
+  $show_cat           = $settings['show_cat'];
+  $show_date          = $settings['show_date'];
+  $show_author         = $settings['show_author'];
+  $show_views         = $settings['show_views'];
+  $show_comments         = $settings['show_comments'];
+  $show_tags        = $settings['show_tags'];
+  $crop	= ($settings['post_title_crop']) ? $settings['post_title_crop'] : 20;
+  $post_content_crop	= ($settings['post_content_crop']) ? $settings['post_content_crop'] : 50;
 
   $this->add_inline_editing_attributes( 'title', 'none' );
 // $this->add_inline_editing_attributes( 'order_by', 'advanced' );
@@ -730,7 +739,7 @@ protected function render() {
       'post_type'   =>  'post',
         'post_status' => 'publish',
         'posts_per_page' => $settings['post_count'],
-        'orderby' => $settings['order_by'],
+        // 'orderby' => $settings['order_by'],
         'category__in' => $value['post_cats'],
         'meta_key'    => 'number_of_views',
         'order' => $settings['order'],

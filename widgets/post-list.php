@@ -680,7 +680,6 @@ class PostList extends Widget_Base {
   */
   protected function render() {
     $settings = $this->get_settings_for_display();
-    $block_style = $settings['block_style'];
     $show_title         = $settings['show_title'];
 
     $show_cat_small           = $settings['show_cat'];

@@ -86,6 +86,17 @@ protected function _register_controls() {
   );
 
   $this->add_control(
+    'show_title',
+    [
+      'label' => esc_html__('Show block title', 'elementor_awesomesauce'),
+      'type' => Controls_Manager::SWITCHER,
+      'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
+      'label_off' => esc_html__('No', 'elementor_awesomesauce'),
+      'default' => 'yes',
+    ]
+  );
+
+  $this->add_control(
     'title',
     [
       'label' => __( 'Title', 'elementor-awesomesauce' ),
@@ -689,9 +700,6 @@ protected function render() {
   $show_views         = $settings['show_views'];
   $show_comments         = $settings['show_comments'];
   $show_tags        = $settings['show_tags'];
-  $number_of_columns_phone = $settings['number_of_columns_phone'];
-  $number_of_columns_tablet = $settings['posts_per_page'];
-  $number_of_columns_desktop = $settings['number_of_columns_desktop'];
   $crop	= (isset($settings['post_title_crop'])) ? $settings['post_title_crop'] : 20;
   $post_content_crop	= (isset($settings['post_content_crop'])) ? $settings['post_content_crop'] : 50;
 
@@ -729,7 +737,7 @@ protected function render() {
       'post_type'   =>  'post',
         'post_status' => 'publish',
         'posts_per_page' => $settings['post_count'],
-        'orderby' => $settings['order_by'],
+        // 'orderby' => $settings['order_by'],
         'category__in' => $value['post_cats'],
         'meta_key'    => 'number_of_views',
         'order' => $settings['order'],

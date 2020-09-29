@@ -779,7 +779,6 @@ class PostGrid extends Widget_Base {
   */
   protected function render() {
     $settings = $this->get_settings_for_display();
-    $block_style = $settings['block_style'];
     $show_title         = $settings['show_title'];
     $show_cat           = $settings['show_cat'];
     $show_date          = $settings['show_date'];

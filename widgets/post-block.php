@@ -1286,7 +1286,6 @@ class PostBlock extends Widget_Base {
     $show_views_small         = $settings['show_views_small'];
     $show_comments_small         = $settings['show_comments_small'];
     $show_tags_small        = $settings['show_tags_small'];
-    $post_count_small      = $settings['post_count_small'];
     $show_exerpt_small = $settings['show_exerpt_small'];
     $crop_small	= (isset($settings['post_title_crop_small'])) ? $settings['post_title_crop_small'] : 20;
     $post_content_crop_small	= (isset($settings['post_content_crop_small'])) ? $settings['post_content_crop_small'] : 50;
