@@ -7,5 +7,4 @@
     </div>
   </div>
 <?php endif; ?>
-
 <?php include (ELEMENTOR_AWESOMESAUCE . 'widgets/content/description.php'); ?>

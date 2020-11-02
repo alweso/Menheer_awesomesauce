@@ -586,54 +586,7 @@ public function get_script_depends() {
               </a>
             <?php endif; ?>
 
-            <?php if($show_comments) { ?>
-              <div class="comments">
-                <?php  echo get_comments_number(); ?>
-              </div>
-            <?php }  ?>
-            <?php if($show_views) { ?>
-              <div class="views">
-                <?php  echo get_field('number_of_views'); ?>
-              </div>
-            <?php }  ?>
-
-            <?php if($show_tags) { ?>
-              <div class="tags">
-                <?php  the_tags(); ?>
-              </div>
-            <?php }  ?>
-
-            <?php if($show_cat) { ?>
-              <div class="category">
-                <?php
-                $categories = get_the_category();
-                foreach ( $categories as $category ) {
-                    echo '<span style="display:inline-block; color:white;padding:5px 10px; margin-right:10px; background-color:'.get_field('category_colors', $category).'" class="acf-category-color">'.$category->name.'</span>';
-                }
-                ?>
-              </div>
-            <?php }  ?>
-
-            <?php if($show_date) { ?>
-              <div class="date">
-                <?php the_date( 'F j, Y' ); ?>
-              </div>
-            <?php }  ?>
-
-            <?php if($show_author) {?>
-              <div class="author">
-                <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" class="author-avatar">
-                  <?php echo get_avatar( get_the_author_meta( 'ID' ), 40); ?>
-                </a>
-                <span>by <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php the_author(); ?></a></span>
-              </div>
-            <?php } ?>
-
-            <h2 class="title"><?php echo esc_html(wp_trim_words(get_the_title(), $crop,'')); ?></h2>
-
-            <?php if($settings['show_excerpt']) {?>
-              <p><?php echo esc_html( wp_trim_words(get_the_excerpt(),$settings['post_content_crop'],'...') );?></p>
-            <?php } ?>
+            <?php include (ELEMENTOR_AWESOMESAUCE . 'widgets/content/description.php'); ?>
           </div>
           <!-- </div> -->
         <?php endwhile; ?>

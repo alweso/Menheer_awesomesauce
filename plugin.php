@@ -76,6 +76,7 @@ class Plugin {
     require_once( __DIR__ . '/widgets/post-block.php' );
     require_once( __DIR__ . '/widgets/post-carousel.php' );
     require_once( __DIR__ . '/widgets/comments.php' );
+      require_once( __DIR__ . '/widgets/post-list-with-numbers.php' );
   }
 
   /**
@@ -102,6 +103,7 @@ class Plugin {
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostBlock() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostCarousel() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Comments() );
+      \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostListWithNumbers() );
 
   }
 

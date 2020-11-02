@@ -394,19 +394,19 @@ class PostList extends Widget_Base {
       [
         'name' => 'big_thumb_border',
         'fields_options' => [
-      'border' => ['default' => 'solid'],
-      'width' => [
-        'default' => [
-          'top' => 6,
-          'right' => 6,
-          'bottom' => 6,
-          'left' => 6,
-          'unit'=> 'px',
-          'isLinked' => true,
+          'border' => ['default' => 'none'],
+          'width' => [
+            'default' => [
+              'top' => 0,
+              'right' => 0,
+              'bottom' => 0,
+              'left' => 0,
+              'unit'=> 'px',
+              'isLinked' => true,
+            ],
+          ],
+          'color' => ['default' => '#FFFFFF'],
         ],
-      ],
-      'color' => ['default' => '#FFFFFF'],
-    ],
         'selector' => '{{WRAPPER}} .awesomesauce-post-block .wrapper .thumbnail',
       ]
     );
@@ -734,6 +734,9 @@ class PostList extends Widget_Base {
     $queryd = new \WP_Query( $arg );
     if ( $queryd->have_posts() ) : ?>
     <div class="awesomesauce-post-block post-list">
+      <?php if($show_title) { ?>
+          <h2 <?php echo $this->get_render_attribute_string( 'title' ); ?>><?php echo $settings['title']; ?></h2>
+      <?php }  ?>
         <?php  require 'block_styles/post-list.php'; ?>
       <?php wp_reset_postdata(); ?>
     </div>

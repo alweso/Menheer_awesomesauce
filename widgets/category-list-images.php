@@ -117,18 +117,6 @@ protected function _register_controls() {
 			]
 		);
 
-    $this->add_responsive_control(
-      'grid_item_padding',
-      [
-        'label' =>esc_html__( 'Item padding', 'elementor_awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::DIMENSIONS,
-        'size_units' => [ 'px', 'em', '%' ],
-        'selectors' => [
-          '{{WRAPPER}} .category-image' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-        ],
-      ]
-    );
-
     $this->add_control(
       'grid_item_color',
       [
@@ -193,11 +181,13 @@ protected function render() {
   ?>
   <h2><?php echo $settings['title']; ?></h2>
 
-  <div class=="categories-with-image">
+  <div class=="categories-with-image" style="display:grid;grid-template-columns:1fr 1fr; column-gap: 15px;">
      <?php
         $categories = get_categories();
         foreach ($categories as $cat) {
-              echo '<div class="category-image"><p>'.$cat->category_count.'</p><a href="'.get_category_link( $cat->cat_ID ).'" class="category-image-inner" style="display:block;background:url('.get_field('category_picture', $cat).');background-size:cover;">'.$cat->name.'</a></div>';
+          if ($cat->category_count > 0) {
+            echo '<div class="category-image"><div class="category-posts-number" style="background-color:'.get_field('category_colors', $cat).'"><span>'.$cat->category_count.'</span></div><a href="'.get_category_link( $cat->cat_ID ).'" class="category-image-inner" style="background-image:url('.get_field('category_picture', $cat).');"><span>'.$cat->name.'</span><div class="category-opacity-color"></div></a></div>';
+          }
           }
 
       ?>
