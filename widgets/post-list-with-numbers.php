@@ -115,112 +115,17 @@ class PostListWithNumbers extends Widget_Base {
       ]
     );
 
-    $this->add_control(
-      'show_exerpt',
-      [
-        'label' => esc_html__('Show Description', 'elementor_awesomesauce'),
-        'type' => Controls_Manager::SWITCHER,
-        'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
-        'label_off' => esc_html__('No', 'elementor_awesomesauce'),
-        'default' => 'no',
-      ]
-    );
-
-    $this->add_control(
-      'post_content_crop',
-      [
-        'label'         => esc_html__( 'Post Exerpt limit', 'elementor_awesomesauce' ),
-        'type'          => Controls_Manager::NUMBER,
-        'default' => '30',
-        'condition' => [ 'show_exerpt' => ['yes'] ]
-
-      ]
-    );
-
-    $this->add_control(
-      'order',
-      [
-        'label' => __( 'Order ASC/DESC', 'elementor-awesomesauce' ),
-        'type' => Controls_Manager::SELECT,
-        'default' => __( 'DESC', 'elementor-awesomesauce' ),
-        'options' => [
-          'DESC'  => __( 'Descending', 'elementor-awesomesauce' ),
-          'ASC' => __( 'Ascending', 'elementor-awesomesauce' ),
-        ],
-      ]
-    );
 
     $this->add_control(
       'order_by',
       [
         'label' => __( 'Show', 'elementor-awesomesauce' ),
         'type' => Controls_Manager::SELECT,
-        'default' => __( 'date', 'elementor-awesomesauce' ),
+        'default' => __( 'meta_value_num', 'elementor-awesomesauce' ),
         'options' => [
-          'date'  => __( 'Latest posts', 'elementor-awesomesauce' ),
           'comment_count'  => __( 'Most commented', 'elementor-awesomesauce' ),
           'meta_value_num'  => __( 'Most read', 'elementor-awesomesauce' ),
         ],
-      ]
-    );
-
-    $this->add_control(
-      'post_pick_by',
-      [
-        'label'     => esc_html__( 'Post pick by', 'elementor_awesomesauce' ),
-        'type'      => Controls_Manager::SELECT,
-        'default'   => '',
-        'options'   => [
-          'category'      =>esc_html__( 'Category', 'elementor_awesomesauce' ),
-          'tags'      =>esc_html__( 'Tags', 'elementor_awesomesauce' ),
-          'stickypost'    =>esc_html__( 'Sticky posts', 'elementor_awesomesauce' ),
-          'post'    =>esc_html__( 'Post id', 'elementor_awesomesauce' ),
-          'author'    =>esc_html__( 'Author', 'elementor_awesomesauce' ),
-        ],
-      ]
-    );
-
-    $this->add_control(
-      'post_categories',
-      [
-        'label' => __( 'Choose categories', 'elementor-awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::SELECT2,
-        'default' => '',
-        'options' => $this->post_category(),
-        'label_block' => true,
-        'multiple' => true,
-        'condition' => [ 'post_pick_by' => ['category'] ]
-      ]
-    );
-
-    $this->add_control(
-      'post_tags',
-      [
-        'label' => esc_html__('Select tags', 'elementor_awesomesauce'),
-        'type' => Controls_Manager::SELECT2,
-        'options' => $this->elementor_awesomesauce_post_tags(),
-        'label_block' => true,
-        'multiple' => true,
-        'condition' => [ 'post_pick_by' => ['tags'] ]
-      ]
-    );
-
-    $this->add_control(
-      'author_id',
-      [
-        'label' => esc_html__( 'Author id', 'elementor_awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::TEXT,
-        'placeholder' => esc_html__( '1,2,3', 'elementor_awesomesauce' ),
-        'condition' => [ 'post_pick_by' => ['author'] ]
-      ]
-    );
-    $this->add_control(
-      'post_id',
-      [
-        'label' => esc_html__( 'Post id', 'elementor_awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::TEXT,
-        'placeholder' => esc_html__( '1,2,3', 'elementor_awesomesauce' ),
-        'condition' => [ 'post_pick_by' => ['post'] ]
       ]
     );
 
@@ -229,7 +134,7 @@ class PostListWithNumbers extends Widget_Base {
       [
         'label' => __( 'Post count', 'elementor-awesomesauce' ),
         'type' => Controls_Manager::NUMBER,
-        'default' => __( 4, 'elementor-awesomesauce' ),
+        'default' => __( 5, 'elementor-awesomesauce' ),
       ]
     );
 
@@ -248,26 +153,6 @@ class PostListWithNumbers extends Widget_Base {
       'show_cat',
       [
         'label' => esc_html__('Show Category', 'elementor_awesomesauce'),
-        'type' => Controls_Manager::SWITCHER,
-        'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
-        'label_off' => esc_html__('No', 'elementor_awesomesauce'),
-        'default' => 'yes',
-      ]
-    );
-    $this->add_control(
-      'show_tags',
-      [
-        'label' => esc_html__('Show tags', 'elementor_awesomesauce'),
-        'type' => Controls_Manager::SWITCHER,
-        'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
-        'label_off' => esc_html__('No', 'elementor_awesomesauce'),
-        'default' => 'no',
-      ]
-    );
-    $this->add_control(
-      'show_author',
-      [
-        'label' => esc_html__('Show author', 'elementor_awesomesauce'),
         'type' => Controls_Manager::SWITCHER,
         'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
         'label_off' => esc_html__('No', 'elementor_awesomesauce'),
@@ -604,36 +489,6 @@ class PostListWithNumbers extends Widget_Base {
                 );
 
                 $this->add_responsive_control(
-                  'big_excerpt_margin_bottom',
-                  [
-                    'label' => __( 'Excerpt margin bottom', 'elementor-awesomesauce' ),
-                    'type' => \Elementor\Controls_Manager::SLIDER,
-                    'range' => [
-                      'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                      ],
-                    ],
-                    'devices' => [ 'desktop', 'tablet', 'mobile' ],
-                    'desktop_default' => [
-                      'size' => 5,
-                      'unit' => 'px',
-                    ],
-                    'tablet_default' => [
-                      'size' => 5,
-                      'unit' => 'px',
-                    ],
-                    'mobile_default' => [
-                      'size' => 5,
-                      'unit' => 'px',
-                    ],
-                    'selectors' => [
-                      '{{WRAPPER}} .awesomesauce-post-block .wrapper--big .description p' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-                    ],
-                  ]
-                );
-
-                $this->add_responsive_control(
                   'item_margin_bottom',
                   [
                     'label' => __( 'Item margin bottom', 'elementor-awesomesauce' ),
@@ -684,12 +539,9 @@ class PostListWithNumbers extends Widget_Base {
 
     $show_cat_small           = $settings['show_cat'];
     $show_date_small          = $settings['show_date'];
-    $show_author_small         = $settings['show_author'];
     $show_views_small         = $settings['show_views'];
     $show_comments_small         = $settings['show_comments'];
-    $show_tags_small        = $settings['show_tags'];
     $post_count_small      = $settings['post_count'];
-    $show_exerpt_small = $settings['show_exerpt'];
     $crop_small	= (isset($settings['post_title_crop'])) ? $settings['post_title_crop'] : 20;
     $post_content_crop_small	= (isset($settings['post_content_crop'])) ? $settings['post_content_crop'] : 50;
 
@@ -700,44 +552,19 @@ class PostListWithNumbers extends Widget_Base {
       'post_type'   =>  'post',
       'post_status' => 'publish',
       'orderby' => $settings['order_by'],
+      'ignore_sticky_posts' => 1,
       'posts_per_page' => $settings['post_count'],
       'meta_key'    => 'number_of_views',
-      'order' => $settings['order'],
+      'order' => 'DESC',
     ];
-
-    if($settings['post_pick_by']=='stickypost'){
-      $arg['post__in'] = get_option( 'sticky_posts' );
-      $arg['ignore_sticky_posts'] = 1;
-    } else {
-      $arg['ignore_sticky_posts'] = 1;
-    }
-
-    if($settings['post_pick_by']=='category') {
-      $arg['category__in'] = $settings['post_categories'];
-    }
-
-    if($settings['post_pick_by']=='tags') {
-      $arg['tag__in'] = $settings['post_tags'];
-    }
-
-    if($settings['post_pick_by']=='post') {
-      $elementor_awesomesauce_posts = explode(',',$settings['post_id']);
-      $arg['post__in'] = $elementor_awesomesauce_posts;
-      $arg['posts_per_page'] = count($elementor_awesomesauce_posts);
-    }
-
-    if($settings['post_pick_by']=='author') {
-      $elementor_awesomesauce_authors = explode(',',$settings['author_id']);
-      $arg['author__in'] = $elementor_awesomesauce_authors;
-    }
 
     $queryd = new \WP_Query( $arg );
     if ( $queryd->have_posts() ) : ?>
-    <div class="awesomesauce-post-block post-list">
+    <div class="awesomesauce-post-block post-list post-list-with-numbers">
       <?php if($show_title) { ?>
           <h2 <?php echo $this->get_render_attribute_string( 'title' ); ?>><?php echo $settings['title']; ?></h2>
       <?php }  ?>
-        <?php  require 'block_styles/post-list.php'; ?>
+        <?php  require 'block_styles/post-list-with-numbers.php'; ?>
       <?php wp_reset_postdata(); ?>
     </div>
     <?php endif; ?>

@@ -114,7 +114,7 @@ class Comments extends Widget_Base {
                         <?php echo esc_html($comment->comment_author); ?>
                     </div>
                     <div class="comment-box_date">
-                      <?php echo get_the_date(get_option($comment->comment_date)); ?>
+                      <?php echo get_the_date( 'd\.m\.Y', get_option($comment->comment_date)); ?>
                     </div>
                   </div>
               </div>

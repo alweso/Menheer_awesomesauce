@@ -18,7 +18,7 @@
       </div>
     <?php }  ?>
     <h4 class="news-title"><?php echo esc_html(wp_trim_words(get_the_title(), $crop_small,'')); ?></h4>
-    <?php if($show_exerpt_small == "yes") {?>
+    <?php if(isset($show_exerpt_small) && $show_exerpt_small == "yes") {?>
       <p><?php echo esc_html( wp_trim_words(get_the_excerpt(),$post_content_crop_small,'...') );?></p>
     <?php } ?>
     <span class="comments-views-date">
