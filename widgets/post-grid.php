@@ -799,7 +799,7 @@ class PostGrid extends Widget_Base {
       'post_status' => 'publish',
       'orderby' => $settings['order_by'],
       'posts_per_page' => $post_count,
-      'meta_key'    => 'number_of_views',
+      // 'meta_key'    => 'number_of_views',
       'order' => $settings['order'],
     ];
 

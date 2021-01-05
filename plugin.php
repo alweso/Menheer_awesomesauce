@@ -103,7 +103,7 @@ class Plugin {
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostBlock() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostCarousel() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Comments() );
-      \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostListWithNumbers() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostListWithNumbers() );
 
   }
 
