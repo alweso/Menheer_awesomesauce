@@ -1297,7 +1297,17 @@ class PostBlock extends Widget_Base {
       'post_status' => 'publish',
       'orderby' => $settings['order_by'],
       'posts_per_page' => $settings['post_count'],
-      // 'meta_key'    => 'number_of_views',
+      'meta_query' => array(
+        'relation' => 'OR',
+        array(
+          'key' => 'number_of_views',
+          'compare' => 'EXISTS'
+        ),
+        array(
+          'key' => 'number_of_views',
+          'compare' => 'NOT EXISTS'
+        ),
+      ),
       'order' => $settings['order'],
     ];
 

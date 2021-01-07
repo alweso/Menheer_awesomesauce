@@ -741,7 +741,7 @@ protected function render() {
         'posts_per_page' => $settings['post_count'],
         // 'orderby' => $settings['order_by'],
         'category__in' => $value['post_cats'],
-        'meta_key'    => 'number_of_views',
+        // 'meta_key'    => 'number_of_views',
         'order' => $settings['order'],
       );
 
