@@ -152,6 +152,20 @@ protected function _register_controls() {
   );
 
   $this->add_control(
+    'order_by',
+    [
+      'label' => __( 'Show', 'elementor-awesomesauce' ),
+      'type' => Controls_Manager::SELECT,
+      'default' => __( 'date', 'elementor-awesomesauce' ),
+      'options' => [
+        'date'  => __( 'Latest posts', 'elementor-awesomesauce' ),
+        'comment_count'  => __( 'Most commented', 'elementor-awesomesauce' ),
+        'meta_value_num'  => __( 'Most read', 'elementor-awesomesauce' ),
+      ],
+    ]
+  );
+
+  $this->add_control(
     'post_count',
     [
       'label' => __( 'Post count', 'elementor-awesomesauce' ),
@@ -739,11 +753,14 @@ protected function render() {
       'post_type'   =>  'post',
         'post_status' => 'publish',
         'posts_per_page' => $settings['post_count'],
-        // 'orderby' => $settings['order_by'],
+        'orderby' => $settings['order_by'],
         'category__in' => $value['post_cats'],
-        // 'meta_key'    => 'number_of_views',
         'order' => $settings['order'],
       );
+
+      if($settings['order_by']== 'meta_value_num'){
+        $arg['meta_key'] ='post_views_count';
+      }
 
       $queryd = new \WP_Query( $arg );
       if ( $queryd->have_posts() ) : ?>

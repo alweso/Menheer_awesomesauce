@@ -115,14 +115,27 @@ class PostListWithNumbers extends Widget_Base {
       ]
     );
 
+    $this->add_control(
+      'order',
+      [
+        'label' => __( 'Order ASC/DESC', 'elementor-awesomesauce' ),
+        'type' => Controls_Manager::SELECT,
+        'default' => __( 'DESC', 'elementor-awesomesauce' ),
+        'options' => [
+          'DESC'  => __( 'Descending', 'elementor-awesomesauce' ),
+          'ASC' => __( 'Ascending', 'elementor-awesomesauce' ),
+        ],
+      ]
+    );
 
     $this->add_control(
       'order_by',
       [
         'label' => __( 'Show', 'elementor-awesomesauce' ),
         'type' => Controls_Manager::SELECT,
-        'default' => __( 'meta_value_num', 'elementor-awesomesauce' ),
+        'default' => __( 'date', 'elementor-awesomesauce' ),
         'options' => [
+          'date'  => __( 'Latest posts', 'elementor-awesomesauce' ),
           'comment_count'  => __( 'Most commented', 'elementor-awesomesauce' ),
           'meta_value_num'  => __( 'Most read', 'elementor-awesomesauce' ),
         ],
@@ -551,12 +564,14 @@ class PostListWithNumbers extends Widget_Base {
     $arg = [
       'post_type'   =>  'post',
       'post_status' => 'publish',
-      'orderby' => $settings['order_by'],
       'ignore_sticky_posts' => 1,
       'posts_per_page' => $settings['post_count'],
-      'meta_key'    => 'number_of_views',
-      'order' => 'DESC',
+      'order' => $settings['order'],
     ];
+
+    if($settings['order_by']== 'meta_value_num'){
+      $arg['meta_key'] ='post_views_count';
+    }
 
     $queryd = new \WP_Query( $arg );
     if ( $queryd->have_posts() ) : ?>

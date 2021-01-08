@@ -26,7 +26,7 @@
       <?php }  ?>
       <?php if($show_views_small) { ?>
         <span class="views">
-          <i class="fa fa-eye"></i><?php  echo get_field('number_of_views'); ?>
+          <i class="fa fa-eye"></i><?php  echo gt_get_post_view(); ?>
         </span>
       <?php }  ?>
       <?php if($show_date_small) { ?>

@@ -543,9 +543,12 @@ public function get_script_depends() {
       'post_type'   =>  'post',
       'post_status' => 'publish',
       'orderby' => $settings['order_by'],
-      'meta_key'    => 'number_of_views',
       'order' => $settings['order'],
     ];
+
+    if($settings['order_by']== 'meta_value_num'){
+      $arg['meta_key'] ='post_views_count';
+    }
 
     if($settings['post_pick_by']=='stickypost'){
       $arg['post__in'] = get_option( 'sticky_posts' );

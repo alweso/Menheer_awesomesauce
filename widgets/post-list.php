@@ -701,7 +701,6 @@ class PostList extends Widget_Base {
       'post_status' => 'publish',
       'orderby' => $settings['order_by'],
       'posts_per_page' => $settings['post_count'],
-      // 'meta_key'    => 'number_of_views',
       'order' => $settings['order'],
     ];
 
@@ -729,6 +728,10 @@ class PostList extends Widget_Base {
     if($settings['post_pick_by']=='author') {
       $elementor_awesomesauce_authors = explode(',',$settings['author_id']);
       $arg['author__in'] = $elementor_awesomesauce_authors;
+    }
+
+    if($settings['order_by']== 'meta_value_num'){
+      $arg['meta_key'] ='post_views_count';
     }
 
     $queryd = new \WP_Query( $arg );

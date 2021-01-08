@@ -1297,17 +1297,6 @@ class PostBlock extends Widget_Base {
       'post_status' => 'publish',
       'orderby' => $settings['order_by'],
       'posts_per_page' => $settings['post_count'],
-      'meta_query' => array(
-        'relation' => 'OR',
-        array(
-          'key' => 'number_of_views',
-          'compare' => 'EXISTS'
-        ),
-        array(
-          'key' => 'number_of_views',
-          'compare' => 'NOT EXISTS'
-        ),
-      ),
       'order' => $settings['order'],
     ];
 
@@ -1316,6 +1305,10 @@ class PostBlock extends Widget_Base {
       $arg['ignore_sticky_posts'] = 1;
     } else {
       $arg['ignore_sticky_posts'] = 1;
+    }
+
+    if($settings['order_by']== 'meta_value_num'){
+      $arg['meta_key'] ='post_views_count';
     }
 
     if($settings['block_style']=='style-4') {
