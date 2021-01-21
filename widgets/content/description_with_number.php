@@ -12,12 +12,18 @@
           background-color: #177c51;
           font-size: 11px;
           font-family: Montserrat;
-          font-weight: 600; background-color:'.get_field('category_colors', $category2).';font-family:Arial;border-radius:10px;" class="acf-category-color">'.$category2->name.'</span>';
+          font-weight: 600; background-color:'.get_field('category_colors', $category2).';font-family:Arial;border-radius:5px;" class="acf-category-color">'.$category2->name.'</span>';
         }
         ?>
       </div>
     <?php }  ?>
-    <h4 class="news-title"><?php echo esc_html(wp_trim_words(get_the_title(), $crop_small,'')); ?></h4>
+    <h4 class="news-title">
+      <?php if (has_post_format('video')) { ?>
+                <i class="fa fa-video"></i>
+      <?php  } elseif (has_post_format('gallery')) { ?>
+        <i class="fa fa-images"></i>
+      <?php  } ?>
+      <?php echo esc_html(wp_trim_words(get_the_title(), $crop_small,'')); ?></h4>
     <span class="comments-views-date">
       <?php if($show_comments_small) { ?>
         <span class="comments">
@@ -31,7 +37,7 @@
       <?php }  ?>
       <?php if($show_date_small) { ?>
         <span class="date">
-          <i class="fa fa-calendar"></i><?php the_date( 'Y-m-d'); ?>
+          <i class="fa fa-calendar"></i><?php echo get_the_date('Y-m-d'); ?>
         </span>
       <?php }  ?>
     </span>

@@ -43,7 +43,7 @@ class WidgetHandlerClass extends elementorModules.frontend.handlers.Base {
       const controls = JSON.parse(this.elements.$secondSelector.attr('data-controls'));
       const autoslide = Boolean(controls.auto_nav_slide?true:false);
       const nav_show = Boolean(controls.nav_show?true:false);
-      const dot_nav = Boolean(controls.dot_nav_show?true:false);
+      const dot_nav_show = Boolean(controls.dot_nav_show?true:false);
       const item_count = parseInt( controls.item_count );
 
       if (this.elements.$secondSelector.length > 0) {
@@ -51,8 +51,8 @@ class WidgetHandlerClass extends elementorModules.frontend.handlers.Base {
                         items: item_count,
                         loop: true,
                         autoplay: autoslide,
-                        nav: nav_show,
-                        dots: dot_nav,
+                        nav: false,
+                        dots: dot_nav_show,
                         autoplayTimeout: 8000,
                         autoplayHoverPause: false,
                         mouseDrag: true,
@@ -99,3 +99,13 @@ jQuery( window ).on( 'elementor/frontend/init', () => {
 
    elementorFrontend.hooks.addAction( 'frontend/element_ready/post-carousel.default', addHandler );
 } );
+
+jQuery(document).ready(function(){
+  jQuery('.post-tabs-hover .hover-tabs a').on('mouseover', function(){
+    var id = jQuery(this).attr('id');
+    jQuery('.post-tabs-hover-content .tab-pane').addClass('hidden');
+    console.log(jQuery('#nav-'+id));
+    jQuery('.post-tabs-hover-content .tab-pane#nav-'+id).removeClass('hidden');
+    console.log(id);
+  });
+});

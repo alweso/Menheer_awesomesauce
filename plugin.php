@@ -51,7 +51,9 @@ class Plugin {
   }
 
   public function widget_styles() {
-		wp_register_style( 'elementor-awesomesauce', plugins_url( 'css/widgets.css', __FILE__ ) );
+		wp_register_style( 'elementor-awesomesauce', plugins_url( '/elementor-awesomesauce/widgets/style.css', __FILE__ ) );
+
+    wp_enqueue_style('style');
 	}
 
 
@@ -67,6 +69,7 @@ class Plugin {
   private function include_widgets_files() {
     require_once( __DIR__ . '/widgets/post-tabs-grid.php' );
     require_once( __DIR__ . '/widgets/post-tabs-list.php' );
+    require_once( __DIR__ . '/widgets/post-tabs-hover.php' );
     require_once( __DIR__ . '/widgets/post-grid.php' );
     require_once( __DIR__ . '/widgets/video-playlist.php' );
     require_once( __DIR__ . '/widgets/category-list-images.php' );
@@ -92,6 +95,7 @@ class Plugin {
     // Register Widgets
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsGrid() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsList() );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsHover() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostGrid() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\VideoPlaylist() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\CategoryListImages() );
@@ -118,6 +122,7 @@ class Plugin {
 
     // Register widgets
     add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+
   }
 }
 

@@ -762,6 +762,8 @@ protected function render() {
 
       $queryd = new \WP_Query( $arg );
       if ( $queryd->have_posts() ) : ?>
+      <?php echo plugins_url( '/style.css', __FILE__ ) ?>
+
           <?php  require 'block_styles/post-grid.php'; ?>
         <?php wp_reset_postdata(); ?>
       <!-- </div> -->

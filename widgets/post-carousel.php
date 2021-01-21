@@ -130,28 +130,6 @@ public function get_script_depends() {
     );
 
     $this->add_control(
-      'show_excerpt',
-      [
-        'label' => esc_html__('Show Description', 'elementor_awesomesauce'),
-        'type' => Controls_Manager::SWITCHER,
-        'label_on' => esc_html__('yes', 'elementor_awesomesauce'),
-        'label_off' => esc_html__('no', 'elementor_awesomesauce'),
-        'default' => 'no',
-      ]
-    );
-
-    $this->add_control(
-      'post_content_crop',
-      [
-        'label'         => esc_html__( 'Post Exerpt limit', 'elementor_awesomesauce' ),
-        'type'          => Controls_Manager::NUMBER,
-        'default' => '30',
-        'condition' => [ 'show_excerpt' => ['yes'] ]
-
-      ]
-    );
-
-    $this->add_control(
       'order',
       [
         'label' => __( 'Order ASC/DESC', 'elementor-awesomesauce' ),
@@ -245,7 +223,7 @@ public function get_script_depends() {
         'type' => Controls_Manager::SWITCHER,
         'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
         'label_off' => esc_html__('No', 'elementor_awesomesauce'),
-        'default' => 'Yes',
+        'default' => 'yes',
       ]
     );
 
@@ -259,16 +237,7 @@ public function get_script_depends() {
         'default' => 'Yes',
       ]
     );
-    $this->add_control(
-      'show_tags',
-      [
-        'label' => esc_html__('Show tags', 'elementor_awesomesauce'),
-        'type' => Controls_Manager::SWITCHER,
-        'label_on' => esc_html__('Yes', 'elementor_awesomesauce'),
-        'label_off' => esc_html__('No', 'elementor_awesomesauce'),
-        'default' => 'No',
-      ]
-    );
+
     $this->add_control(
       'show_author',
       [
@@ -331,7 +300,7 @@ public function get_script_depends() {
          );
 
       $this->add_control(
-          'digiqole_slider_dot_nav_show',
+          'dot_nav_show',
               [
               'label' => esc_html__( 'Dot Nav', 'digiqole' ),
               'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -341,19 +310,6 @@ public function get_script_depends() {
               'default' => 'yes'
               ]
       );
-
-
-      $this->add_control(
-         'digiqole_slider_nav_show',
-             [
-             'label' => esc_html__( 'Nav', 'digiqole' ),
-             'type' => \Elementor\Controls_Manager::SWITCHER,
-             'label_on' => esc_html__( 'Yes', 'digiqole' ),
-             'label_off' => esc_html__( 'No', 'digiqole' ),
-             'return_value' => 'yes',
-             'default' => 'yes'
-             ]
-     );
 
   $this->end_controls_section();
 
@@ -396,113 +352,6 @@ public function get_script_depends() {
     );
 
     $this->end_controls_section();
-
-    $this->start_controls_section(
-      'border_section',
-      [
-        'label' => __( 'Grid item border', 'elementor-awesomesauce' ),
-        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-      ]
-    );
-
-
-    $this->add_group_control(
-      \Elementor\Group_Control_Border::get_type(),
-      [
-        'name' => 'border',
-        'selector' => '{{WRAPPER}} .wrapper',
-      ]
-    );
-
-    $this->end_controls_section();
-
-    $this->start_controls_section(
-      'sizing_section',
-      [
-        'label' => __( 'Paddings, margins and background', 'elementor-awesomesauce' ),
-        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-      ]
-    );
-
-    $this->add_responsive_control(
-      'grid_item_padding',
-      [
-        'label' =>esc_html__( 'Grid item padding', 'elementor_awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::DIMENSIONS,
-        'size_units' => [ 'px', 'em', '%' ],
-        'selectors' => [
-          '{{WRAPPER}} .wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-        ],
-      ]
-    );
-
-    $this->add_responsive_control(
-      'grid_item_column_gap',
-      [
-        'label' =>esc_html__( 'Grid item column gap (css grid)', 'elementor_awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::NUMBER,
-        'default' => 15,
-        'selectors' => [
-          '{{WRAPPER}} .big-wrapper' => 'column-gap: {{VALUE}}px;',
-        ],
-      ]
-    );
-
-    $this->add_responsive_control(
-      'grid_item_row_gap',
-      [
-        'label' =>esc_html__( 'Grid item row gap (css grid)', 'elementor_awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::NUMBER,
-        'default' => 15,
-        'selectors' => [
-          '{{WRAPPER}} .big-wrapper' => 'row-gap: {{VALUE}}px;',
-        ],
-      ]
-    );
-
-    $this->add_control(
-      'grid_item_color',
-      [
-        'label' => __( 'Grid item color', '' ),
-        'type' => \Elementor\Controls_Manager::COLOR,
-        'default' => '#ffffff',
-        'selectors' => [
-          '{{WRAPPER}} .wrapper' => 'background-color: {{VALUE}}',
-        ],
-      ]
-    );
-
-    $this->add_responsive_control(
-      'thumbnail_margin_bottom',
-      [
-        'label' => __( 'Thumbnail margin bottom', 'elementor-awesomesauce' ),
-        'type' => \Elementor\Controls_Manager::SLIDER,
-        'range' => [
-          'px' => [
-            'min' => 0,
-            'max' => 100,
-          ],
-        ],
-        'devices' => [ 'desktop', 'tablet', 'mobile' ],
-        'desktop_default' => [
-          'size' => 30,
-          'unit' => 'px',
-        ],
-        'tablet_default' => [
-          'size' => 20,
-          'unit' => 'px',
-        ],
-        'mobile_default' => [
-          'size' => 10,
-          'unit' => 'px',
-        ],
-        'selectors' => [
-          '{{WRAPPER}} .widget-image' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-        ],
-      ]
-    );
-
-    $this->end_controls_section();
   }
 
   /**
@@ -528,8 +377,7 @@ public function get_script_depends() {
 
     $slide_controls    = [
 
-       'dot_nav_show' => $settings['digiqole_slider_dot_nav_show'],
-       'nav_show' => $settings['digiqole_slider_nav_show'],
+       'dot_nav_show' => $settings['dot_nav_show'],
        'auto_nav_slide' => $settings['digiqole_slider_autoplay'],
        'item_count' => $settings['post_show'],
      ];
@@ -585,7 +433,7 @@ public function get_script_depends() {
           <div class="wrapper">
             <?php if ( has_post_thumbnail() ) : ?>
               <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="widget-image d-block">
-                <?php the_post_thumbnail('featured-small', ['class' => 'img-fluid', 'title' => 'Feature image']); ?>
+                <?php the_post_thumbnail('medium-horizontal', ['class' => 'img-fluid', 'title' => 'Feature image']); ?>
               </a>
             <?php endif; ?>
 

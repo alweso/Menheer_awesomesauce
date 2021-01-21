@@ -94,29 +94,6 @@ protected function _register_controls() {
     ]
   );
 
-  $this->add_control(
-			'image_height',
-			[
-				'label' => __( 'Image height', 'plugin-domain' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px'],
-				'range' => [
-					'px' => [
-						'min' => 40,
-						'max' => 60,
-						'step' => 1,
-					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 50,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .category-image-inner' => 'height: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
     $this->add_control(
       'grid_item_color',
       [
@@ -186,7 +163,7 @@ protected function render() {
         $categories = get_categories();
         foreach ($categories as $cat) {
           if ($cat->category_count > 0) {
-            echo '<div class="category-image"><div class="category-posts-number" style="background-color:'.get_field('category_colors', $cat).'"><span>'.$cat->category_count.'</span></div><a href="'.get_category_link( $cat->cat_ID ).'" class="category-image-inner" style="background-image:url('.get_field('category_picture', $cat).');"><span>'.$cat->name.'</span><div class="category-opacity-color"></div></a></div>';
+            echo '<div class="category-image"><div class="category-posts-number" style="background-color:'.get_field('category_colors', $cat).'"><span>'.$cat->category_count.'</span></div><a href="'.get_category_link( $cat->cat_ID ).'" class="category-image-inner" style="background-image:url('.get_field('category_picture', $cat)['url'].');"><span>'.$cat->name.'</span><div class="category-opacity-color"></div></a></div>';
           }
           }
 
