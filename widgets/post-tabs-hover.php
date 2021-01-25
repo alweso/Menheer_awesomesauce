@@ -721,52 +721,54 @@ protected function render() {
 // $this->add_inline_editing_attributes( 'order_by', 'advanced' );
 // $this->add_inline_editing_attributes( 'post_count', 'advanced' );
   ?>
-  <h2 <?php echo $this->get_render_attribute_string( 'title' ); ?>><?php echo $settings['title']; ?>fdsafsfdsfddsfdsf</h2>
 
-  <nav class="post-tabs-hover">
-    <div class="hover-tabs" >
-      <?php
-      foreach ( $tabs as $tab_key=>$value ) {
+  <div class="container" style="max-width:1140px;">
+    <div class="row">
+      <div class="col-12">
+        <div class="post-tabs-hover-vertical">
+          <nav class="post-tabs-hover">
+            <div class="hover-tabs" >
+              <?php
+              foreach ( $tabs as $tab_key=>$value ) {
+                  echo '<a id="'.$this->get_id().$value['_id'].'" " href="#">'.$value['tab_title'].'</a>';
+              }
+              ?>
+            </div>
+          </nav>
+          <div class="awesomesauce-post-block post-tabs-hover-content">
+            <?php foreach ($tabs as $content_key=>$value) {
+              if( $content_key == 0){
+                echo '<div class="tab-pane"  id="nav-'.$this->get_id().$value['_id'].'">';
+              } else {
+                echo '<div class="tab-pane hidden"  id="nav-'.$this->get_id().$value['_id'].'">';
+              }
+              $arg = array(
+              'post_type'   =>  'post',
+                'post_status' => 'publish',
+                'posts_per_page' => $settings['post_count'],
+                'orderby' => $settings['order_by'],
+                'category__in' => $value['post_cats'],
+                'order' => $settings['order'],
+              );
 
-        if( $tab_key == 0 ){
-          echo '<a id="'.$this->get_id().$value['_id'].'" " href="#">'.$value['tab_title'].'</a>';
-        } else {
-          echo '<a id="'.$this->get_id().$value['_id'].'" href="#">'.$value['tab_title'].'</a>';
-        }
-      }
-      ?>
+              if($settings['order_by']== 'meta_value_num'){
+                $arg['meta_key'] ='post_views_count';
+              }
+
+              $queryd = new \WP_Query( $arg );
+              if ( $queryd->have_posts() ) : ?>
+                  <?php  require 'block_styles/post-grid.php'; ?>
+                <?php wp_reset_postdata(); ?>
+              <!-- </div> -->
+            <?php endif; ?>
+            </div>
+          <?php } ?>
+        </div>
+        </div>
+      </div>
     </div>
-  </nav>
+  </div>
 
-  <div class="awesomesauce-post-block post-tabs-hover-content">    <h1>fdsfsd</h1>
-
-    <?php foreach ($tabs as $content_key=>$value) {
-
-        echo '<div class="tab-pane"  id="nav-'.$this->get_id().$value['_id'].'">';
-
-
-      $arg = array(
-      'post_type'   =>  'post',
-        'post_status' => 'publish',
-        'posts_per_page' => $settings['post_count'],
-        'orderby' => $settings['order_by'],
-        'category__in' => $value['post_cats'],
-        'order' => $settings['order'],
-      );
-
-      if($settings['order_by']== 'meta_value_num'){
-        $arg['meta_key'] ='post_views_count';
-      }
-
-      $queryd = new \WP_Query( $arg );
-      if ( $queryd->have_posts() ) : ?>
-          <?php  require 'block_styles/post-grid.php'; ?>
-        <?php wp_reset_postdata(); ?>
-      <!-- </div> -->
-    <?php endif; ?>
-    </div>
-  <?php } ?>
-</div>
 <?php }
 
 protected function _content_template() {
@@ -774,7 +776,6 @@ protected function _content_template() {
 }
 
 public function post_category() {
-
   $terms = get_terms( array(
     'taxonomy'    => 'category',
     'hide_empty'  => false,

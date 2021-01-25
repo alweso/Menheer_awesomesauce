@@ -99,13 +99,3 @@ jQuery( window ).on( 'elementor/frontend/init', () => {
 
    elementorFrontend.hooks.addAction( 'frontend/element_ready/post-carousel.default', addHandler );
 } );
-
-jQuery(document).ready(function(){
-  jQuery('.post-tabs-hover .hover-tabs a').on('mouseover', function(){
-    var id = jQuery(this).attr('id');
-    jQuery('.post-tabs-hover-content .tab-pane').addClass('hidden');
-    console.log(jQuery('#nav-'+id));
-    jQuery('.post-tabs-hover-content .tab-pane#nav-'+id).removeClass('hidden');
-    console.log(id);
-  });
-});

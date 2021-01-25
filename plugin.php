@@ -69,7 +69,6 @@ class Plugin {
   private function include_widgets_files() {
     require_once( __DIR__ . '/widgets/post-tabs-grid.php' );
     require_once( __DIR__ . '/widgets/post-tabs-list.php' );
-    require_once( __DIR__ . '/widgets/post-tabs-hover.php' );
     require_once( __DIR__ . '/widgets/post-grid.php' );
     require_once( __DIR__ . '/widgets/video-playlist.php' );
     require_once( __DIR__ . '/widgets/category-list-images.php' );
@@ -95,7 +94,6 @@ class Plugin {
     // Register Widgets
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsGrid() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsList() );
-    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostTabsHover() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\PostGrid() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\VideoPlaylist() );
     \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\CategoryListImages() );

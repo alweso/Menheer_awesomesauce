@@ -7,12 +7,14 @@
         foreach ( $categories as $category ) {
           echo '<span style="display: inline-block;
           color: white;
-          padding: 1px 10px;
-          margin-right: 10px;
-          background-color: #177c51;
-          font-size: 11px;
-          font-family: Montserrat;
-          font-weight: 600; background-color:'.get_field('category_colors', $category).';font-family:Arial;border-radius:5px;" class="acf-category-color">'.$category->name.'</span>';
+          padding: 4px 7px;
+    margin-right: 10px;
+    background-color: #177c51;
+    font-size: 10px;
+    font-family: Arial;
+    font-weight: 500;
+    border-radius: 2px;
+    line-height: 10px; background-color:'.get_field('category_colors', $category).';border-radius:2px;" class="acf-category-color">'.$category->name.'</span>';
         }
         ?>
       </div>
